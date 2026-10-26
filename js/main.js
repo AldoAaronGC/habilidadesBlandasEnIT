@@ -185,24 +185,68 @@ function toggleFullScreen() {
 
 function initTouchGestures() {
   let touchStartX = 0;
+  let touchStartY = 0;
   let touchEndX = 0;
+  let touchEndY = 0;
 
   window.addEventListener('touchstart', e => {
     touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
   }, { passive: true });
 
   window.addEventListener('touchend', e => {
     touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
     handleSwipe();
   }, { passive: true });
 
   function handleSwipe() {
-    const diff = touchEndX - touchStartX;
-    if (Math.abs(diff) > 50) {
-      if (diff < 0) nextSlide();
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    // Only trigger slide change if horizontal swipe is dominant & significant
+    if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+      if (diffX < 0) nextSlide();
       else prevSlide();
     }
   }
 }
 
 window.addEventListener('DOMContentLoaded', initDeck);
+
+// ── QR Fullscreen Modal ──────────────────────────────
+function initQRModal() {
+  const overlay = document.getElementById('qr-modal');
+  const closeBtn = document.getElementById('qr-modal-close');
+  const triggers = document.querySelectorAll('#qr-trigger, .qr-badge-trigger');
+
+  if (!overlay) return;
+
+  function openModal(e) {
+    e.stopPropagation();
+    overlay.classList.add('qr-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('qr-open');
+    document.body.style.overflow = '';
+  }
+
+  triggers.forEach(t => t.addEventListener('click', openModal));
+
+  // Click on backdrop closes
+  overlay.addEventListener('click', closeModal);
+
+  // Click on card itself doesn't close
+  overlay.querySelector('.qr-modal-card')?.addEventListener('click', e => e.stopPropagation());
+
+  // Close button
+  closeBtn?.addEventListener('click', (e) => { e.stopPropagation(); closeModal(); });
+
+  // ESC key closes
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('qr-open')) closeModal();
+  });
+}
+
+window.addEventListener('DOMContentLoaded', initQRModal);
