@@ -1,0 +1,439 @@
+/* css/animations.css - Keyframe animations for SVG infographics and glows */
+
+/* Glow and pulse utilities */
+@keyframes ambientPulse {
+  0%, 100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.08) translate(15px, -10px);
+    opacity: 0.6;
+  }
+}
+
+.ambient-glow {
+  animation: ambientPulse 12s ease-in-out infinite;
+}
+
+.glow-bottom-right {
+  animation-delay: -6s;
+}
+
+/* Float animation */
+@keyframes softFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: softFloat 4s ease-in-out infinite;
+}
+
+/* Slide 1 - Orbital Core Animations */
+@keyframes orbitRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitCounterRotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes coreBreathing {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.6));
+  }
+  50% {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 35px rgba(37, 99, 235, 0.85));
+  }
+}
+
+.svg-core-pulse {
+  transform-origin: center;
+  animation: coreBreathing 3.5s ease-in-out infinite;
+}
+
+.svg-orbit-outer {
+  transform-origin: center;
+  animation: orbitRotate 22s linear infinite;
+}
+
+.svg-orbit-inner {
+  transform-origin: center;
+  animation: orbitCounterRotate 14s linear infinite;
+}
+
+.svg-orbit-node {
+  transform-origin: center;
+  animation: orbitCounterRotate 22s linear infinite;
+}
+
+/* Slide 2 - Section Title Beam Animation */
+@keyframes beamSweep {
+  0% {
+    opacity: 0.2;
+    transform: rotate(-25deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: rotate(25deg);
+  }
+  100% {
+    opacity: 0.2;
+    transform: rotate(-25deg);
+  }
+}
+
+@keyframes diamondGlow {
+  0%, 100% {
+    transform: scale(1) rotate(45deg);
+    filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.5));
+  }
+  50% {
+    transform: scale(1.12) rotate(45deg);
+    filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.9));
+  }
+}
+
+.svg-beam-sweep {
+  transform-origin: bottom center;
+  animation: beamSweep 6s ease-in-out infinite;
+}
+
+.svg-diamond-pulse {
+  transform-origin: center;
+  animation: diamondGlow 3s ease-in-out infinite;
+}
+
+/* Slide 3 - Spotlight & Projector Animations */
+@keyframes projectorRay {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes waveOscillate {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -80;
+  }
+}
+
+@keyframes badgePop {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.svg-projector-ray {
+  animation: projectorRay 3s ease-in-out infinite;
+}
+
+.svg-wave-flow {
+  stroke-dasharray: 8 6;
+  animation: waveOscillate 2.5s linear infinite;
+}
+
+.svg-badge-float {
+  animation: badgePop 3.2s ease-in-out infinite;
+}
+
+/* Slide 4 - Holographic Decision Table & Cards */
+@keyframes tableScan {
+  0% {
+    transform: translateY(0);
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(180px);
+    opacity: 0.1;
+  }
+}
+
+@keyframes uniqueCardGlow {
+  0%, 100% {
+    transform: translateY(-8px) scale(1.03);
+    filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.8));
+  }
+  50% {
+    transform: translateY(-14px) scale(1.05);
+    filter: drop-shadow(0 0 40px rgba(37, 99, 235, 1));
+  }
+}
+
+.svg-scan-line {
+  animation: tableScan 3s ease-in-out infinite;
+}
+
+.svg-unique-card {
+  animation: uniqueCardGlow 3.5s ease-in-out infinite;
+}
+
+@keyframes radarSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.svg-radar-sweep {
+  transform-origin: center;
+  animation: radarSpin 4s linear infinite;
+}
+
+/* Slide 5 & 6 - Bidirectional Radar & Sync */
+@keyframes radarPulse {
+  0% {
+    r: 10px;
+    opacity: 0.9;
+  }
+  100% {
+    r: 90px;
+    opacity: 0;
+  }
+}
+
+.svg-radar-ring-1 {
+  animation: radarPulse 3s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+.svg-radar-ring-2 {
+  animation: radarPulse 3s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes bidirectionalLink {
+  0%, 100% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: -40;
+  }
+}
+
+.svg-bidirectional-link {
+  stroke-dasharray: 6 6;
+  animation: bidirectionalLink 2s linear infinite;
+}
+
+/* Slide 7 - Face-to-Face Connection Pulse */
+@keyframes handshakeGlow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 25px rgba(37, 99, 235, 0.9));
+  }
+}
+
+.svg-handshake-pulse {
+  transform-origin: center;
+  animation: handshakeGlow 3s ease-in-out infinite;
+}
+
+/* Slide 8 & 9 - Holographic Key & Door */
+@keyframes keyFloatRotate {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(6deg);
+  }
+}
+
+@keyframes portalGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+.svg-key-float {
+  transform-origin: center;
+  animation: keyFloatRotate 4s ease-in-out infinite;
+}
+
+.svg-portal-glow {
+  transform-origin: center;
+  animation: portalGlow 3.5s ease-in-out infinite;
+}
+
+/* Slide 10 & 11 - Capital Profesional Vault & Blocks */
+@keyframes vaultRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gearCounterRotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.svg-vault-spin {
+  transform-origin: center;
+  animation: vaultRotate 20s linear infinite;
+}
+
+.svg-gear-spin {
+  transform-origin: center;
+  animation: gearCounterRotate 12s linear infinite;
+}
+
+/* Slide 12 & 13 - Parity Scale Balance & Mindset */
+@keyframes balanceSway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+}
+
+@keyframes solutionPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.6));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(37, 99, 235, 0.9));
+    transform: scale(1.05);
+  }
+}
+
+.svg-balance-beam {
+  transform-origin: 120px 75px;
+  animation: balanceSway 6s ease-in-out infinite;
+}
+
+.svg-solution-badge {
+  transform-origin: center;
+  animation: solutionPulse 2.8s ease-in-out infinite;
+}
+
+/* Slide 14 & 15 - Fear Shield & Noise Dissolve */
+@keyframes shieldPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.6));
+  }
+  50% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 35px rgba(6, 182, 212, 1));
+  }
+}
+
+@keyframes noiseWave {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    stroke-dashoffset: -120;
+    opacity: 0.8;
+  }
+}
+
+.svg-shield-core {
+  transform-origin: center;
+  animation: shieldPulse 3s ease-in-out infinite;
+}
+
+.svg-noise-line {
+  stroke-dasharray: 6 10;
+  animation: noiseWave 3s linear infinite;
+}
+
+/* Slide 16 & 17 - Hackathon Stopwatch & Data Converge */
+@keyframes stopwatchHand {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes trophyGlow {
+  0%, 100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.4));
+  }
+  50% {
+    transform: translateY(-6px);
+    filter: drop-shadow(0 0 30px rgba(250, 204, 21, 0.8));
+  }
+}
+
+.svg-stopwatch-hand {
+  transform-origin: 120px 90px;
+  animation: stopwatchHand 4s linear infinite;
+}
+
+.svg-trophy-float {
+  animation: trophyGlow 3s ease-in-out infinite;
+}
+
+/* Slide 18 - Emblem Loop & Final Button Pulse */
+@keyframes finalEmblemRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.svg-final-emblem {
+  transform-origin: center;
+  animation: finalEmblemRotate 28s linear infinite;
+}
+

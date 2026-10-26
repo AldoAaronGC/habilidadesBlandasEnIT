@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habilidades Blandas y Marca Personal | Aldo Gutierrez</title>
+  <meta name="description" content="Presentación interactiva sobre la importancia de las habilidades blandas y marca personal en tecnología por Aldo Gutierrez.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#2563EB',
+              indigo: '#4F46E5',
+              cyan: '#06B6D4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/presentation.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased overflow-hidden selection:bg-cyan-500 selection:text-slate-950">
+
+  <!-- Ambient Light Blurs -->
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-bottom-right"></div>
+
+  <!-- Three.js 3D Particle Canvas -->
+  <div id="bg-canvas"></div>
+
+  <!-- Presentation Application Shell -->
+  <div class="app-container">
+
+    <!-- Top Navigation & Status Bar -->
+    <header class="w-full px-6 py-4 flex items-center justify-between z-20">
+      <!-- Brand & Speaker -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 p-[1px] shadow-lg shadow-cyan-500/20">
+          <div class="w-full h-full bg-slate-900/90 rounded-[11px] flex items-center justify-center">
+            <i data-lucide="sparkles" class="w-5 h-5 text-cyan-400"></i>
+          </div>
+        </div>
+        <div>
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-cyan-400">Masterclass Ejecutiva</h2>
+          <p class="text-sm font-medium text-slate-300">Aldo Gutierrez</p>
+        </div>
+      </div>
+
+      <!-- Center Slide Progress Dots -->
+      <div id="dots-container" class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full glass-pill">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Mode Badge & Slide Counter -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full glass-pill text-xs font-mono text-cyan-300 border border-cyan-500/20">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span>Interactivo</span>
+        </div>
+        <div id="slide-counter" class="px-3.5 py-1.5 rounded-full glass-pill text-xs font-mono font-semibold text-slate-200 border border-white/10">
+          1 / 18
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Deck Slides Viewport -->
+    <main class="deck-viewport">
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 1: PORTADA PRINCIPAL                                                -->
+      <!-- ========================================================================= -->
+      <section class="slide active" id="slide-1">
+        <div class="w-full glass-panel p-8 sm:p-12 lg:p-14 relative overflow-hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            <!-- Left Column: Copy & Presentation Meta -->
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+              <div>
+                <span class="badge-tag">
+                  <i data-lucide="compass" class="w-3.5 h-3.5 text-cyan-400"></i>
+                  Conferencia Magistral & Desarrollo de Carrera
+                </span>
+              </div>
+
+              <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+                La Importancia de las <br>
+                <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-300 bg-clip-text text-transparent">
+                  Habilidades Blandas
+                </span> <br>
+                y la Marca Personal
+              </h1>
+
+              <p class="text-base sm:text-lg text-slate-300 font-light max-w-2xl leading-relaxed">
+                Cómo destacar, conectar con autenticidad y proyectar tu valor real dentro de un ecosistema tecnológico hipercompetitivo.
+              </p>
+
+              <!-- Speaker Highlight Pill -->
+              <div class="flex flex-wrap items-center gap-4 pt-2">
+                <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 shadow-inner shadow-cyan-500/10">
+                  <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow">
+                    AG
+                  </div>
+                  <div>
+                    <span class="text-xs text-slate-400 block font-mono">Ponente</span>
+                    <span class="text-sm font-semibold text-white">Aldo Gutierrez</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2 text-xs text-slate-400 font-mono px-3 py-2">
+                  <i data-lucide="keyboard" class="w-4 h-4 text-cyan-400"></i>
+                  <span>Usa flechas o espacio para navegar</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Interactive Animated SVG Orbital Core -->
+            <div class="lg:col-span-5 flex items-center justify-center relative">
+              <div class="w-full max-w-[380px] aspect-square relative flex items-center justify-center">
+                <!-- Ambient blur inside graphic -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-blue-600/30 to-cyan-400/20 rounded-full blur-2xl"></div>
+
+                <svg viewBox="0 0 400 400" class="w-full h-full relative z-10 drop-shadow-2xl">
+                  <defs>
+                    <linearGradient id="gradOrb1" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#2563EB" />
+                      <stop offset="100%" stop-color="#06B6D4" />
+                    </linearGradient>
+                    <linearGradient id="gradCore" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.9" />
+                      <stop offset="100%" stop-color="#4F46E5" stop-opacity="0.9" />
+                    </linearGradient>
+                    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="8" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                  </defs>
+
+                  <!-- Central Glowing Core -->
+                  <g class="svg-core-pulse">
+                    <circle cx="200" cy="200" r="44" fill="url(#gradCore)" filter="url(#glowEffect)" />
+                    <circle cx="200" cy="200" r="32" fill="#0F172A" stroke="#38BDF8" stroke-width="2" />
+                    <!-- Core Icon: User Brand -->
+                    <circle cx="200" cy="192" r="10" fill="#38BDF8" />
+                    <path d="M184 216 C 184 205, 216 205, 216 216" stroke="#38BDF8" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                  </g>
+
+                  <!-- Inner Orbit (Soft Skills) -->
+                  <g class="svg-orbit-inner">
+                    <circle cx="200" cy="200" r="88" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.6" />
+                    <!-- Inner Node A: Comunicación -->
+                    <g transform="translate(200, 112)">
+                      <circle cx="0" cy="0" r="14" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+                      <circle cx="0" cy="0" r="4" fill="#38BDF8" />
+                    </g>
+                    <!-- Inner Node B: Empatía -->
+                    <g transform="translate(200, 288)">
+                      <circle cx="0" cy="0" r="14" fill="#0F172A" stroke="#2563EB" stroke-width="2" />
+                      <circle cx="0" cy="0" r="4" fill="#60A5FA" />
+                    </g>
+                  </g>
+
+                  <!-- Outer Orbit (Technical & Value Integration) -->
+                  <g class="svg-orbit-outer">
+                    <circle cx="200" cy="200" r="145" fill="none" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="6 8" opacity="0.4" />
+                    <!-- Outer Node 1: Persuasión -->
+                    <g transform="translate(97, 97)">
+                      <circle cx="0" cy="0" r="16" fill="#0F172A" stroke="#38BDF8" stroke-width="2" />
+                      <path d="M-5 -2 L0 4 L6 -4" stroke="#38BDF8" stroke-width="2" fill="none" />
+                    </g>
+                    <!-- Outer Node 2: Portafolio -->
+                    <g transform="translate(303, 303)">
+                      <circle cx="0" cy="0" r="16" fill="#0F172A" stroke="#4F46E5" stroke-width="2" />
+                      <rect x="-6" y="-6" width="12" height="12" rx="3" fill="#4F46E5" />
+                    </g>
+                    <!-- Outer Node 3: Presencia -->
+                    <g transform="translate(303, 97)">
+                      <circle cx="0" cy="0" r="14" fill="#0F172A" stroke="#2563EB" stroke-width="2" />
+                      <circle cx="0" cy="0" r="3" fill="#93C5FD" />
+                    </g>
+                  </g>
+
+                  <!-- Synaptic Connector Sparks -->
+                  <line x1="200" y1="156" x2="200" y2="126" stroke="#38BDF8" stroke-width="1.5" opacity="0.8" stroke-dasharray="2 3" />
+                  <line x1="168" y1="200" x2="135" y2="200" stroke="#818CF8" stroke-width="1.5" opacity="0.8" stroke-dasharray="2 3" />
+                </svg>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 2: SEPARADOR DEDICADO — 1. EL ARTE DE VENDER                        -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-2">
+        <div class="w-full glass-panel p-10 sm:p-14 lg:p-20 relative flex flex-col items-center justify-center text-center overflow-hidden">
+          
+          <!-- Background Ambient Ray -->
+          <div class="absolute inset-0 bg-radial from-blue-600/20 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+          <!-- Section Badge -->
+          <div class="mb-6">
+            <span class="px-5 py-2 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-blue-500/10 border border-cyan-400/30 text-cyan-300 shadow-lg shadow-cyan-500/10">
+              SECCIÓN 01
+            </span>
+          </div>
+
+          <!-- Title Presentation -->
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight mb-6">
+            1. El Arte de <br>
+            <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+              Vender
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-xl text-slate-300 max-w-xl font-light mb-10 leading-relaxed">
+            Descubre por qué la excelencia técnica sin proyección es invisible, y cómo posicionarte como una opción insustituible.
+          </p>
+
+          <!-- SVG Visual Emblem: The Value Projector -->
+          <div class="w-48 h-36 relative flex items-center justify-center">
+            <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-xl">
+              <defs>
+                <linearGradient id="beamGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.6" />
+                  <stop offset="100%" stop-color="#2563EB" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+
+              <!-- Projector Base -->
+              <ellipse cx="100" cy="130" rx="35" ry="8" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+              <rect x="92" y="115" width="16" height="15" fill="#2563EB" rx="3" />
+
+              <!-- Sweeping Light Beam -->
+              <polygon points="100,115 40,20 160,20" fill="url(#beamGrad)" class="svg-beam-sweep" />
+
+              <!-- Core Floating Diamond in light -->
+              <g transform="translate(100, 48)">
+                <rect x="-14" y="-14" width="28" height="28" fill="#0F172A" stroke="#38BDF8" stroke-width="2.5" class="svg-diamond-pulse" />
+                <circle cx="0" cy="0" r="4" fill="#38BDF8" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Bottom hint -->
+          <div class="mt-8 flex items-center gap-2 text-xs font-mono text-slate-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Avanza para desglosar los principios clave</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 3: 1. EL ARTE DE VENDER (PARTE 1: PROYECCIÓN DE VALOR)              -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-3">
+        <div class="w-full glass-panel p-6 sm:p-10 lg:p-12 relative flex flex-col justify-between">
+          
+          <!-- Slide Header -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">Sección 01 • Parte 1</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-xs text-slate-400">Fundamentos de Persuasión</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                El Arte de Vender: <span class="text-cyan-400">Proyección de Valor</span>
+              </h2>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300">
+              <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
+              <span>3 Conceptos Clave</span>
+            </div>
+          </div>
+
+          <!-- Main Content Layout: 3 Cards + SVG Illustration -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-6 items-center">
+            
+            <!-- Cards Column (3 subtopics strictly as Vertical 2-sided Interactive Flip Cards) -->
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              
+              <!-- Card 1 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front: Logo + Idea Principal -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-400/30 flex items-center justify-center text-cyan-400 mb-3.5 shadow-md">
+                        <i data-lucide="repeat" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        La vida es un proceso de venta constante
+                      </h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">
+                        Principio fundamental de visibilidad profesional
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back: Contenido Desarrollado -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Entrevistas, calificaciones, exámenes y evaluaciones de desempeño son escenarios continuos donde <span class="text-cyan-300 font-semibold">comunicas el valor</span> de tus ideas, tu criterio y tus capacidades.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 mb-3.5 shadow-md">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        Convencer al prójimo de tu valor real
+                      </h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">
+                        Percepción y credibilidad ante los líderes
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        No es suficiente saber ejecutar tareas en silencio; el verdadero éxito radica en lograr que los líderes y equipos <span class="text-cyan-300 font-semibold">perciban con certeza</span> el impacto que generas.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-amber-500/30 hover:border-amber-400/60">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-3.5 shadow-md">
+                        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        La trampa de la capacidad técnica
+                      </h3>
+                      <p class="text-xs sm:text-sm text-amber-300/80 font-light">
+                        El error más costoso de los perfiles técnicos
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-amber-500/20 border-amber-400/40 text-amber-300">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between border-amber-500/40 bg-slate-900/95">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 mb-2.5">
+                        <i data-lucide="zap" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Puedes tener toda la experiencia técnica del mundo, pero <span class="text-cyan-300 font-semibold">si no sabes proyectarla ni venderte</span>, nunca se alcanzará el éxito en el mercado.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-amber-500/20 text-amber-300 border-amber-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Side SVG Infographic: Technical skill vs Visibility Projection -->
+            <div class="lg:col-span-4 flex items-center justify-center">
+              <div class="w-full max-w-[300px] aspect-square rounded-2xl bg-slate-900/70 border border-cyan-500/20 p-5 flex flex-col items-center justify-between relative shadow-xl">
+                <div class="text-center">
+                  <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Ecuación Profesional</span>
+                  <p class="text-sm font-bold text-white mt-0.5">Técnica + Proyección</p>
+                </div>
+
+                <svg viewBox="0 0 240 180" class="w-full h-full my-2">
+                  <defs>
+                    <linearGradient id="projGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+                      <stop offset="0%" stop-color="#2563EB" />
+                      <stop offset="100%" stop-color="#06B6D4" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Technical Base (Hidden Box) -->
+                  <rect x="25" y="70" width="70" height="70" rx="10" fill="#0F172A" stroke="#334155" stroke-width="2" />
+                  <path d="M45 100 L55 110 L75 95" stroke="#64748B" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                  <text x="60" y="130" fill="#94A3B8" font-size="9" text-anchor="middle" font-family="monospace">Capacidad</text>
+
+                  <!-- Dynamic Arrow with pulses -->
+                  <path d="M105 105 L135 105" stroke="url(#projGrad)" stroke-width="3" class="svg-wave-flow" stroke-linecap="round" />
+                  <polygon points="135,100 145,105 135,110" fill="#06B6D4" />
+
+                  <!-- Value Beacon (Projected) -->
+                  <g class="svg-badge-float">
+                    <circle cx="185" cy="105" r="32" fill="#0F172A" stroke="#06B6D4" stroke-width="2.5" />
+                    <circle cx="185" cy="105" r="24" fill="rgba(6, 182, 212, 0.15)" />
+                    <i data-lucide="zap" class="text-cyan-400"></i>
+                    <!-- Beacon rings -->
+                    <circle cx="185" cy="105" r="38" fill="none" stroke="#38BDF8" stroke-width="1" stroke-dasharray="3 3" opacity="0.6" />
+                    <text x="185" y="108" fill="#38BDF8" font-size="10" font-weight="bold" text-anchor="middle" font-family="sans-serif">ÉXITO</text>
+                  </g>
+                </svg>
+
+                <div class="text-[11px] font-mono text-center text-slate-400 bg-slate-950/60 px-3 py-1.5 rounded-lg border border-white/5 w-full">
+                  Valor Percibido = Habilidad × Comunicación
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Slide Footer Quote -->
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+            <span>"El código resuelve el problema; la comunicación hace que lo adopten."</span>
+            <span class="text-cyan-400">Slide 3</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 4: 1. EL ARTE DE VENDER (PARTE 2: DIFERENCIACIÓN Y RESULTADOS)      -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-4">
+        <div class="w-full glass-panel p-6 sm:p-10 lg:p-12 relative flex flex-col justify-between">
+          
+          <!-- Slide Header -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">Sección 01 • Parte 2</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-xs text-slate-400">Estrategia de Selección</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                El Arte de Vender: <span class="text-cyan-400">Diferenciación y Resultados</span>
+              </h2>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300">
+              <i data-lucide="target" class="w-4 h-4 text-cyan-400"></i>
+              <span>3 Principios Estratégicos</span>
+            </div>
+          </div>
+
+          <!-- Main Content Layout: 3 Cards + SVG Decision Table -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-6 items-center">
+            
+            <!-- Cards Column (3 subtopics strictly as Vertical 2-sided Interactive Flip Cards) -->
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              
+              <!-- Card 1 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-400/30 flex items-center justify-center text-indigo-400 mb-3.5 shadow-md">
+                        <i data-lucide="fingerprint" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        No te centres en ser el mejor, céntrate en ser único
+                      </h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">
+                        Estrategia para romper el molde de la masa
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center text-indigo-300 mb-2.5">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Competir solo por credenciales estándar te convierte en una variable reemplazable. El objetivo principal es <span class="text-cyan-300 font-semibold">no pasar como un currículum más</span> en la pila del reclutador.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-cyan-500/40 bg-cyan-950/20">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 mb-3.5 shadow-md">
+                        <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        El objetivo clave: Estar sí o sí en la mesa de decisión
+                      </h3>
+                      <p class="text-xs sm:text-sm text-cyan-300/80 font-light">
+                        Asegurar tu presencia en la terna final
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="target" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Lograr que nuestro nombre sea debatido entre las opciones finales cuando el comité decida a quién contratar. Ahí radica la <span class="text-cyan-300 font-semibold">verdadera victoria inicial</span>.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-slate-500/10 border border-slate-400/30 flex items-center justify-center text-slate-300 mb-3.5 shadow-md">
+                        <i data-lucide="compass" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        Aceptar el resultado con madurez
+                      </h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">
+                        Desvincular la valía propia del dictamen externo
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="shield" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Que luego no nos escojan es una circunstancia ajena a nosotros; nuestra responsabilidad principal es asegurar que <span class="text-cyan-300 font-semibold">estuvimos entre las opciones reales</span> y memorables.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Side SVG Infographic: Holographic Selection Table -->
+            <div class="lg:col-span-4 flex items-center justify-center">
+              <div class="w-full max-w-[300px] aspect-square rounded-2xl bg-slate-900/70 border border-cyan-500/20 p-5 flex flex-col items-center justify-between relative shadow-xl overflow-hidden">
+                <div class="text-center z-10">
+                  <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Mesa de Selección</span>
+                  <p class="text-sm font-bold text-white mt-0.5">Diferenciación Visual</p>
+                </div>
+
+                <svg viewBox="0 0 240 180" class="w-full h-full my-2 relative z-10">
+                  <defs>
+                    <linearGradient id="scanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0" />
+                      <stop offset="50%" stop-color="#06B6D4" stop-opacity="0.8" />
+                      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Holographic Grid Lines -->
+                  <line x1="20" y1="140" x2="220" y2="140" stroke="#1E293B" stroke-width="2" />
+                  <ellipse cx="120" cy="140" rx="90" ry="20" fill="none" stroke="#334155" stroke-dasharray="4 4" opacity="0.6" />
+
+                  <!-- Scanner Laser Beam -->
+                  <line x1="20" y1="20" x2="220" y2="20" stroke="url(#scanGrad)" stroke-width="2" class="svg-scan-line" />
+
+                  <!-- Standard CV Card 1 (Grey) -->
+                  <g transform="translate(35, 75)">
+                    <rect x="0" y="0" width="45" height="60" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1.5" />
+                    <line x1="8" y1="15" x2="37" y2="15" stroke="#475569" stroke-width="2" />
+                    <line x1="8" y1="25" x2="30" y2="25" stroke="#334155" stroke-width="2" />
+                    <line x1="8" y1="35" x2="34" y2="35" stroke="#334155" stroke-width="2" />
+                  </g>
+
+                  <!-- Standard CV Card 2 (Grey) -->
+                  <g transform="translate(160, 75)">
+                    <rect x="0" y="0" width="45" height="60" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1.5" />
+                    <line x1="8" y1="15" x2="37" y2="15" stroke="#475569" stroke-width="2" />
+                    <line x1="8" y1="25" x2="32" y2="25" stroke="#334155" stroke-width="2" />
+                    <line x1="8" y1="35" x2="28" y2="35" stroke="#334155" stroke-width="2" />
+                  </g>
+
+                  <!-- The UNIQUE Candidate Card (Glows & Floats) -->
+                  <g transform="translate(95, 55)" class="svg-unique-card">
+                    <rect x="0" y="0" width="50" height="70" rx="8" fill="#0B132B" stroke="#06B6D4" stroke-width="2.5" />
+                    <!-- Crown/Star badge -->
+                    <circle cx="25" cy="20" r="10" fill="#2563EB" />
+                    <circle cx="25" cy="20" r="4" fill="#38BDF8" />
+                    <line x1="10" y1="38" x2="40" y2="38" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" />
+                    <line x1="10" y1="48" x2="35" y2="48" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" />
+                    <line x1="10" y1="58" x2="28" y2="58" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" />
+                  </g>
+                </svg>
+
+                <div class="text-[11px] font-mono text-center text-cyan-300 bg-slate-950/70 px-3 py-1.5 rounded-lg border border-cyan-500/20 w-full z-10">
+                  ★ Tu nombre en la mesa final
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Slide Footer Quote -->
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+            <span>"No compitas en la fila; crea tu propia categoría."</span>
+            <span class="text-cyan-400">Slide 4</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 5: SEPARADOR DEDICADO — 2. ENTREVISTAS                              -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-5">
+        <div class="w-full glass-panel p-10 sm:p-14 lg:p-20 relative flex flex-col items-center justify-center text-center overflow-hidden">
+          <div class="absolute inset-0 bg-radial from-cyan-600/20 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+          <div class="mb-6">
+            <span class="px-5 py-2 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 shadow-lg shadow-cyan-500/10">
+              SECCIÓN 02
+            </span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight mb-6">
+            2. <br>
+            <span class="bg-gradient-to-r from-cyan-300 via-blue-400 to-indigo-300 bg-clip-text text-transparent">
+              Entrevistas
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-xl text-slate-300 max-w-xl font-light mb-10 leading-relaxed">
+            Reescribe las reglas del juego: de la necesidad unidireccional a una conversación auténtica de interés mutuo.
+          </p>
+
+          <!-- SVG Visual: Radar de sintonía y diálogo bidireccional -->
+          <div class="w-48 h-36 relative flex items-center justify-center">
+            <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-xl">
+              <circle cx="100" cy="75" r="45" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-dasharray="4 4" class="svg-radar-sweep" />
+              <circle cx="100" cy="75" r="28" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+              <circle cx="70" cy="75" r="10" fill="#2563EB" opacity="0.8" />
+              <circle cx="130" cy="75" r="10" fill="#06B6D4" opacity="0.8" />
+              <line x1="70" y1="75" x2="130" y2="75" stroke="#38BDF8" stroke-width="2" class="svg-bidirectional-link" />
+              <circle cx="100" cy="75" r="5" fill="#FFFFFF" />
+            </svg>
+          </div>
+
+          <div class="mt-8 flex items-center gap-2 text-xs font-mono text-slate-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Avanza para explorar valoración y mentalidad</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 6: 2. ENTREVISTAS (PARTE 1: VALORACIÓN Y MENTALIDAD)                -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-6">
+        <div class="w-full glass-panel p-6 sm:p-10 lg:p-12 relative flex flex-col justify-between">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">Sección 02 • Parte 1</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-xs text-slate-400">Factores de Selección</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                Entrevistas: <span class="text-cyan-400">Valoración y Mentalidad</span>
+              </h2>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300">
+              <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400"></i>
+              <span>3 Conceptos Clave</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-6 items-center">
+            
+            <!-- Cards Column (3 subtopics strictly as Vertical 2-sided Interactive Flip Cards) -->
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <!-- Card 1 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-400/30 flex items-center justify-center text-cyan-400 mb-3.5 shadow-md">
+                        <i data-lucide="trending-up" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        Valoración actual de las Soft Skills
+                      </h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">
+                        Evolución en la demanda de la industria tech
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Hoy las empresas tecnológicas valoran más que nunca las <span class="text-cyan-300 font-semibold">habilidades blandas (*soft skills*)</span>: comunicación clara, escucha activa, empatía y adaptabilidad al cambio.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 mb-3.5 shadow-md">
+                        <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        Saberse vender con autenticidad
+                      </h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">
+                        Construir confianza sin máscaras forzadas
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Lejos de adoptar posturas artificiales o ensayar guiones rígidos, conectar de forma <span class="text-cyan-300 font-semibold">transparente y honesta</span> genera confianza inmediata en el entrevistador.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-cyan-500/40 bg-cyan-950/20">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 mb-3.5 shadow-md">
+                        <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        Mentalidad: Cambiar el chip
+                      </h3>
+                      <p class="text-xs sm:text-sm text-cyan-300/80 font-light">
+                        Comprender la inversión de la empresa en ti
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="zap" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        No solo nosotros deseamos el trabajo; <span class="text-cyan-300 font-semibold">las empresas también nos buscan</span>. Invierten enormes recursos (tiempo y capital) en encontrar perfiles valiosos.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Illustration: Radar Bidireccional de Búsqueda -->
+            <div class="lg:col-span-4 flex items-center justify-center">
+              <div class="w-full max-w-[300px] aspect-square rounded-2xl bg-slate-900/70 border border-cyan-500/20 p-5 flex flex-col items-center justify-between relative shadow-xl overflow-hidden">
+                <div class="text-center z-10">
+                  <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Interés Mutuo</span>
+                  <p class="text-sm font-bold text-white mt-0.5">Sincronía de Valor</p>
+                </div>
+
+                <svg viewBox="0 0 240 180" class="w-full h-full my-2 relative z-10">
+                  <!-- Company Node Left -->
+                  <circle cx="50" cy="90" r="28" fill="#0F172A" stroke="#2563EB" stroke-width="2" />
+                  <text x="50" y="85" fill="#60A5FA" font-size="9" text-anchor="middle" font-family="monospace">EMPRESA</text>
+                  <text x="50" y="98" fill="#93C5FD" font-size="8" text-anchor="middle" font-family="sans-serif">Busca</text>
+
+                  <!-- Expanding Radar Waves -->
+                  <circle cx="50" cy="90" r="10" fill="none" stroke="#2563EB" stroke-width="1.5" class="svg-radar-ring-1" />
+                  <circle cx="190" cy="90" r="10" fill="none" stroke="#06B6D4" stroke-width="1.5" class="svg-radar-ring-2" />
+
+                  <!-- Connecting Bidirectional Flow -->
+                  <path d="M78 90 L162 90" stroke="#38BDF8" stroke-width="3" class="svg-bidirectional-link" />
+
+                  <!-- Talent Node Right -->
+                  <circle cx="190" cy="90" r="28" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+                  <text x="190" y="85" fill="#38BDF8" font-size="9" text-anchor="middle" font-family="monospace">TALENTO</text>
+                  <text x="190" y="98" fill="#A5F3FC" font-size="8" text-anchor="middle" font-family="sans-serif">Aporta</text>
+
+                  <!-- Central Match Sparkle -->
+                  <circle cx="120" cy="90" r="14" fill="#0B132B" stroke="#F8FAFC" stroke-width="1.5" />
+                  <text x="120" y="94" fill="#F8FAFC" font-size="10" font-weight="bold" text-anchor="middle">⚡</text>
+                </svg>
+
+                <div class="text-[11px] font-mono text-center text-cyan-300 bg-slate-950/70 px-3 py-1.5 rounded-lg border border-cyan-500/20 w-full z-10">
+                  Una relación de mutua necesidad
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+            <span>"Una entrevista no es un examen; es una negociación de futuro compartido."</span>
+            <span class="text-cyan-400">Slide 6</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 7: 2. ENTREVISTAS (PARTE 2: CONEXIÓN HUMANA)                        -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-7">
+        <div class="w-full glass-panel p-6 sm:p-10 lg:p-12 relative flex flex-col justify-between">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">Sección 02 • Parte 2</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-xs text-slate-400">Presencia Real</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                Entrevistas: <span class="text-cyan-400">Conexión Humana</span>
+              </h2>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300">
+              <i data-lucide="users" class="w-4 h-4 text-cyan-400"></i>
+              <span>2 Acciones Clave</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-6 items-center">
+            
+            <!-- Cards Column (2 subtopics strictly as Vertical 2-sided Interactive Flip Cards) -->
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Card 1 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-400/30 flex items-center justify-center text-indigo-400 mb-3.5 shadow-md">
+                        <i data-lucide="building" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        Acción: Visitar las oficinas
+                      </h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">
+                        Romper el molde en un mundo saturado de clics digitales
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center text-indigo-300 mb-2.5">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        En una era hiperdigitalizada donde todos envían formularios genéricos con un clic, presentarte en las oficinas físicas y mostrar <span class="text-cyan-300 font-semibold">interés genuino</span> rompe inmediatamente el molde.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-cyan-500/40 bg-cyan-950/20">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 mb-3.5 shadow-md">
+                        <i data-lucide="message-square" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        Conversar más allá del papel
+                      </h3>
+                      <p class="text-xs sm:text-sm text-cyan-300/80 font-light">
+                        La química interpersonal que ningún PDF transmite
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Las empresas contratan a personas en quienes confían. La empatía, el lenguaje corporal y la <span class="text-cyan-300 font-semibold">química interpersonal</span> jamás podrán transmitirse en un archivo PDF estático.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Illustration: Digital Resume vs Real Handshake -->
+            <div class="lg:col-span-4 flex items-center justify-center">
+              <div class="w-full max-w-[300px] aspect-square rounded-2xl bg-slate-900/70 border border-cyan-500/20 p-5 flex flex-col items-center justify-between relative shadow-xl overflow-hidden">
+                <div class="text-center z-10">
+                  <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Trascender la Pantalla</span>
+                  <p class="text-sm font-bold text-white mt-0.5">Vínculo Humano Real</p>
+                </div>
+
+                <svg viewBox="0 0 240 180" class="w-full h-full my-2 relative z-10">
+                  <!-- Paper fading out -->
+                  <g opacity="0.35" transform="translate(35, 60)">
+                    <rect x="0" y="0" width="40" height="55" rx="4" fill="#0F172A" stroke="#64748B" stroke-width="1.5" />
+                    <line x1="8" y1="12" x2="32" y2="12" stroke="#64748B" stroke-width="2" />
+                    <line x1="8" y1="20" x2="28" y2="20" stroke="#64748B" stroke-width="2" />
+                  </g>
+
+                  <!-- Dynamic Arrow -->
+                  <path d="M85 85 L120 85" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 4" />
+
+                  <!-- Handshake / Connection Core -->
+                  <g transform="translate(160, 85)" class="svg-handshake-pulse">
+                    <circle cx="0" cy="0" r="32" fill="#0F172A" stroke="#06B6D4" stroke-width="2.5" />
+                    <circle cx="0" cy="0" r="22" fill="#2563EB" opacity="0.2" />
+                    <!-- Intersecting circles of dialogue -->
+                    <circle cx="-6" cy="0" r="10" fill="none" stroke="#38BDF8" stroke-width="2" />
+                    <circle cx="6" cy="0" r="10" fill="none" stroke="#60A5FA" stroke-width="2" />
+                    <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
+                  </g>
+                </svg>
+
+                <div class="text-[11px] font-mono text-center text-cyan-300 bg-slate-950/70 px-3 py-1.5 rounded-lg border border-cyan-500/20 w-full z-10">
+                  ★ El contacto directo vence al algoritmo
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+            <span>"El currículum te consigue la cita; tu presencia humana te consigue el puesto."</span>
+            <span class="text-cyan-400">Slide 7</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 8: SEPARADOR DEDICADO — 3. EMPIEZA YA CON UN PIE DENTRO DEL TRABAJO -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-8">
+        <div class="w-full glass-panel p-10 sm:p-14 lg:p-20 relative flex flex-col items-center justify-center text-center overflow-hidden">
+          <div class="absolute inset-0 bg-radial from-blue-600/20 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+          <div class="mb-6">
+            <span class="px-5 py-2 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-blue-500/10 border border-cyan-400/30 text-cyan-300 shadow-lg shadow-cyan-500/10">
+              SECCIÓN 03
+            </span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight mb-6">
+            3. Empieza Ya con un <br>
+            <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+              Pie Dentro del Trabajo
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-xl text-slate-300 max-w-xl font-light mb-10 leading-relaxed">
+            No esperes a ser contratado para demostrar lo que eres capaz de resolver. Aporta la solución por adelantado.
+          </p>
+
+          <!-- SVG Visual: Llave maestra holográfica y umbral -->
+          <div class="w-48 h-36 relative flex items-center justify-center">
+            <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-xl">
+              <!-- Portal Gate -->
+              <rect x="70" y="25" width="60" height="95" rx="8" fill="#0F172A" stroke="#2563EB" stroke-width="2" class="svg-portal-glow" />
+              <!-- Holographic Key Floating -->
+              <g transform="translate(100, 70)" class="svg-key-float">
+                <circle cx="-12" cy="0" r="12" fill="none" stroke="#06B6D4" stroke-width="3" />
+                <line x1="0" y1="0" x2="24" y2="0" stroke="#06B6D4" stroke-width="3" />
+                <line x1="16" y1="0" x2="16" y2="8" stroke="#06B6D4" stroke-width="2.5" />
+                <line x1="22" y1="0" x2="22" y2="6" stroke="#06B6D4" stroke-width="2.5" />
+                <circle cx="-12" cy="0" r="4" fill="#38BDF8" />
+              </g>
+            </svg>
+          </div>
+
+          <div class="mt-8 flex items-center gap-2 text-xs font-mono text-slate-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Avanza para conocer casos prácticos de proactividad</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 9: 3. EMPIEZA YA CON UN PIE DENTRO (DEMOSTRACIÓN Y PROACTIVIDAD)    -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-9">
+        <div class="w-full glass-panel p-6 sm:p-10 lg:p-12 relative flex flex-col justify-between">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">Sección 03</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-xs text-slate-400">Iniciativa Práctica</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                Empieza Ya: <span class="text-cyan-400">Demostración y Proactividad</span>
+              </h2>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300">
+              <i data-lucide="zap" class="w-4 h-4 text-cyan-400"></i>
+              <span>4 Puntos Clave</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-6 items-center">
+            
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Point 1 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-blue-500/10 border border-blue-400/30 flex items-center justify-center text-cyan-400 mb-3 shadow-md">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Marcar diferencia</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Ir más allá de los requisitos básicos</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      No basta con decir que cumples la vacante. Cumplir los requisitos mínimos es únicamente el <span class="text-cyan-300 font-semibold">piso de entrada, no el techo</span>.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 2 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 mb-3 shadow-md">
+                        <i data-lucide="folder-git-2" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Demostrar el valor</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Evidencia práctica viva y desplegada</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Mostrar el talento a través de un <span class="text-cyan-300 font-semibold">portafolio vivo y desplegado</span>, accesible de inmediato para que el jurado lo pruebe.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 3 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-cyan-500/40 bg-cyan-950/20">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 mb-3 shadow-md">
+                        <i data-lucide="cpu" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Valor especializado</h3>
+                      <p class="text-xs sm:text-sm text-cyan-300/80 font-light">Soluciones a medida para la empresa</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      • <strong class="text-cyan-300">Diseñador Web:</strong> Presentar el home de la empresa ya rediseñado.<br>
+                      • <strong class="text-cyan-300">Data Analyst:</strong> Traer la solución modelada a su industria.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 4 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-indigo-500/10 border border-indigo-400/30 flex items-center justify-center text-indigo-400 mb-3 shadow-md">
+                        <i data-lucide="check-check" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Proactividad consumada</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Iniciativa construida y verbalizada</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Es una iniciativa ya construida; en la reunión ya no prometes qué harías, solo te queda <span class="text-cyan-300 font-semibold">verbalizar lo que ya ejecutaste</span>.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Illustration: Prototype scanning into production -->
+            <div class="lg:col-span-4 flex items-center justify-center">
+              <div class="w-full max-w-[300px] aspect-square rounded-2xl bg-slate-900/70 border border-cyan-500/20 p-5 flex flex-col items-center justify-between relative shadow-xl overflow-hidden">
+                <div class="text-center z-10">
+                  <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Demostración Activa</span>
+                  <p class="text-sm font-bold text-white mt-0.5">La Solución ya Hecha</p>
+                </div>
+
+                <svg viewBox="0 0 240 180" class="w-full h-full my-2 relative z-10">
+                  <!-- Browser Frame of Proposed Redesign -->
+                  <rect x="30" y="35" width="180" height="110" rx="8" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+                  <rect x="30" y="35" width="180" height="20" rx="8" fill="#1E293B" />
+                  <circle cx="45" cy="45" r="3.5" fill="#EF4444" />
+                  <circle cx="56" cy="45" r="3.5" fill="#EAB308" />
+                  <circle cx="67" cy="45" r="3.5" fill="#10B981" />
+                  <rect x="85" y="40" width="80" height="10" rx="3" fill="#334155" />
+
+                  <!-- Prototype Layout Lines -->
+                  <rect x="45" y="68" width="65" height="30" rx="4" fill="#2563EB" opacity="0.4" />
+                  <rect x="120" y="68" width="75" height="10" rx="3" fill="#475569" />
+                  <rect x="120" y="84" width="55" height="8" rx="2" fill="#334155" />
+                  <rect x="45" y="108" width="150" height="24" rx="4" fill="#06B6D4" opacity="0.2" />
+
+                  <!-- Checkmark badge -->
+                  <g transform="translate(195, 130)">
+                    <circle cx="0" cy="0" r="16" fill="#10B981" />
+                    <path d="M-6 0 L-2 4 L6 -4" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                  </g>
+                </svg>
+
+                <div class="text-[11px] font-mono text-center text-cyan-300 bg-slate-950/70 px-3 py-1.5 rounded-lg border border-cyan-500/20 w-full z-10">
+                  Menos promesas, más prototipos reales
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+            <span>"Llegar con el trabajo hecho es la forma más contundente de decir 'contrátame'."</span>
+            <span class="text-cyan-400">Slide 9</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 10: SEPARADOR DEDICADO — 4. CAPITAL PROFESIONAL                     -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-10">
+        <div class="w-full glass-panel p-10 sm:p-14 lg:p-20 relative flex flex-col items-center justify-center text-center overflow-hidden">
+          <div class="absolute inset-0 bg-radial from-indigo-600/20 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+          <div class="mb-6">
+            <span class="px-5 py-2 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-indigo-500/10 border border-indigo-400/30 text-indigo-300 shadow-lg shadow-indigo-500/10">
+              SECCIÓN 04
+            </span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight mb-6">
+            4. Capital <br>
+            <span class="bg-gradient-to-r from-indigo-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
+              Profesional
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-xl text-slate-300 max-w-xl font-light mb-10 leading-relaxed">
+            Construye un patrimonio de competencias sólido, transferible e inmune a las modas pasajeras.
+          </p>
+
+          <!-- SVG Visual: Emblema geométrico de bóveda de valor -->
+          <div class="w-48 h-36 relative flex items-center justify-center">
+            <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-xl">
+              <!-- Outer Vault Ring -->
+              <polygon points="100,20 145,45 145,95 100,120 55,95 55,45" fill="none" stroke="#4F46E5" stroke-width="2" class="svg-vault-spin" />
+              <!-- Inner Gears -->
+              <circle cx="100" cy="70" r="28" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+              <g transform="translate(100, 70)" class="svg-gear-spin">
+                <circle cx="0" cy="0" r="14" fill="none" stroke="#38BDF8" stroke-width="3" stroke-dasharray="6 4" />
+                <circle cx="0" cy="0" r="5" fill="#FFFFFF" />
+              </g>
+            </svg>
+          </div>
+
+          <div class="mt-8 flex items-center gap-2 text-xs font-mono text-slate-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Avanza para desglosar dimensiones y credenciales</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 11: 4. CAPITAL PROFESIONAL (PILARES Y CREDENCIALES)                 -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-11">
+        <div class="w-full glass-panel p-6 sm:p-10 lg:p-12 relative flex flex-col justify-between">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">Sección 04</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-xs text-slate-400">Patrimonio de Competencias</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                Capital Profesional: <span class="text-cyan-400">Pilares y Credenciales</span>
+              </h2>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300">
+              <i data-lucide="layers-3" class="w-4 h-4 text-cyan-400"></i>
+              <span>4 Puntos Clave</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-6 items-center">
+            
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Point 1 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-blue-500/10 border border-blue-400/30 flex items-center justify-center text-cyan-400 mb-3 shadow-md">
+                        <i data-lucide="shield" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Definición de Capital</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Patrimonio integral que te separa de la media</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Conjunto de <span class="text-cyan-300 font-semibold">habilidades, talentos y cualidades</span> personales, profesionales y técnicas que te distinguen claramente de la mayoría.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 2 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-cyan-500/40 bg-cyan-950/20">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 mb-3 shadow-md">
+                        <i data-lucide="sparkle" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Dimensión General</h3>
+                      <p class="text-xs sm:text-sm text-cyan-300/80 font-light">Aprender a aprender de forma continua</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      <span class="text-cyan-300 font-semibold">Aprender a aprender de forma autónoma</span> y continua: la capacidad de asimilar nuevas tecnologías ante un sector en constante evolución.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 3 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-indigo-500/10 border border-indigo-400/30 flex items-center justify-center text-indigo-400 mb-3 shadow-md">
+                        <i data-lucide="crosshair" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Dimensión Particular</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Especialización profunda en tu nicho</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Habilidades altamente específicas y dominio profundo de tu <span class="text-cyan-300 font-semibold">nicho técnico</span> donde aportas un valor difícil de replicar.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 4 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 mb-3 shadow-md">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Desarrollar credenciales</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Proyectos prácticos más allá del título</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Ir más allá del título universitario; respaldarte con <span class="text-cyan-300 font-semibold">proyectos prácticos desplegados</span> que demuestran experiencia tangible real.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Illustration: Pyramid of Professional Capital -->
+            <div class="lg:col-span-4 flex items-center justify-center">
+              <div class="w-full max-w-[300px] aspect-square rounded-2xl bg-slate-900/70 border border-cyan-500/20 p-5 flex flex-col items-center justify-between relative shadow-xl overflow-hidden">
+                <div class="text-center z-10">
+                  <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Pilares del Talento</span>
+                  <p class="text-sm font-bold text-white mt-0.5">Arquitectura de Carrera</p>
+                </div>
+
+                <svg viewBox="0 0 240 180" class="w-full h-full my-2 relative z-10">
+                  <!-- Base Layer: Saber Aprender -->
+                  <rect x="30" y="125" width="180" height="26" rx="5" fill="#0F172A" stroke="#2563EB" stroke-width="2" />
+                  <text x="120" y="142" fill="#93C5FD" font-size="10" font-weight="bold" text-anchor="middle">1. Aprender a Aprender</text>
+
+                  <!-- Middle Layer: Nicho Particular -->
+                  <rect x="55" y="85" width="130" height="26" rx="5" fill="#0F172A" stroke="#4F46E5" stroke-width="2" />
+                  <text x="120" y="102" fill="#A5B4FC" font-size="10" font-weight="bold" text-anchor="middle">2. Dominio de Nicho</text>
+
+                  <!-- Top Apex: Proyectos y Credenciales -->
+                  <rect x="80" y="45" width="80" height="26" rx="5" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+                  <text x="120" y="62" fill="#38BDF8" font-size="9" font-weight="bold" text-anchor="middle">3. Proyectos</text>
+
+                  <!-- Crown/Cap of experience -->
+                  <circle cx="120" cy="28" r="8" fill="#F8FAFC" />
+                  <circle cx="120" cy="28" r="4" fill="#06B6D4" />
+                </svg>
+
+                <div class="text-[11px] font-mono text-center text-cyan-300 bg-slate-950/70 px-3 py-1.5 rounded-lg border border-cyan-500/20 w-full z-10">
+                  El título abre puertas; los proyectos demuestran maestría
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+            <span>"Tu capital profesional es el único activo que los despidos no pueden liquidar."</span>
+            <span class="text-cyan-400">Slide 11</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 12: SEPARADOR DEDICADO — 5. MINDSET                                 -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-12">
+        <div class="w-full glass-panel p-10 sm:p-14 lg:p-20 relative flex flex-col items-center justify-center text-center overflow-hidden">
+          <div class="absolute inset-0 bg-radial from-cyan-600/20 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+          <div class="mb-6">
+            <span class="px-5 py-2 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 shadow-lg shadow-cyan-500/10">
+              SECCIÓN 05
+            </span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight mb-6">
+            5. <br>
+            <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-300 bg-clip-text text-transparent">
+              Mindset
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-xl text-slate-300 max-w-xl font-light mb-10 leading-relaxed">
+            Erradica la posición de súplica. Trata a las empresas desde la igualdad y el desapego profesional.
+          </p>
+
+          <!-- SVG Visual: Interruptor mental y pulso de confianza -->
+          <div class="w-48 h-36 relative flex items-center justify-center">
+            <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-xl">
+              <!-- Switch track -->
+              <rect x="50" y="55" width="100" height="40" rx="20" fill="#0F172A" stroke="#2563EB" stroke-width="2" />
+              <!-- Switch handle ON position -->
+              <circle cx="120" cy="75" r="16" fill="#06B6D4" class="svg-solution-badge" />
+              <circle cx="120" cy="75" r="8" fill="#FFFFFF" />
+              <text x="75" y="80" fill="#64748B" font-size="11" font-weight="bold" font-family="monospace">OFF</text>
+              <text x="120" y="80" fill="#0B132B" font-size="11" font-weight="bold" font-family="monospace">ON</text>
+            </svg>
+          </div>
+
+          <div class="mt-8 flex items-center gap-2 text-xs font-mono text-slate-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Avanza para revisar paridad profesional y errores comunes</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 13: 5. MINDSET (PARIDAD PROFESIONAL Y DESAPEGO)                     -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-13">
+        <div class="w-full glass-panel p-6 sm:p-10 lg:p-12 relative flex flex-col justify-between">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">Sección 05</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-xs text-slate-400">Psicología Profesional</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                Mindset: <span class="text-cyan-400">Paridad y Desapego Profesional</span>
+              </h2>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300">
+              <i data-lucide="scale" class="w-4 h-4 text-cyan-400"></i>
+              <span>4 Puntos Clave</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-6 items-center">
+            
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Point 1 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-rose-500/30 hover:border-rose-400/50">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-rose-500/10 border border-rose-400/30 flex items-center justify-center text-rose-400 mb-3 shadow-md">
+                        <i data-lucide="x-circle" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Errores comunes</h3>
+                      <p class="text-xs sm:text-sm text-rose-300/80 font-light">Malbaratar tu trabajo y desvalorizarte</p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-rose-500/15 border-rose-400/30 text-rose-300">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between border-rose-500/40">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Malbaratar el propio trabajo y creer que valemos menos por falta de experiencia previa. <span class="text-rose-300 font-semibold">Tu criterio técnico tiene un valor real</span>.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-rose-500/20 text-rose-300 border-rose-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 2 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-blue-500/10 border border-blue-400/30 flex items-center justify-center text-cyan-400 mb-3 shadow-md">
+                        <i data-lucide="anchor" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Desapego profesional</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Autoestima blindada ante el rechazo</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Trabajar el <span class="text-cyan-300 font-semibold">desapego emocional</span>: jamás condicionar tu valía o autoestima al resultado de una postulación individual o prueba aislada.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 3 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-cyan-500/40 bg-cyan-950/20">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 mb-3 shadow-md">
+                        <i data-lucide="check" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Cambio de enfoque</h3>
+                      <p class="text-xs sm:text-sm text-cyan-300/80 font-light">Eres la solución a sus dolores de negocio</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      <span class="text-cyan-300 font-semibold">Tú eres la solución a sus problemas</span>. La empresa tiene un dolor técnico que le cuesta dinero y tiempo; tú tienes el remedio práctico.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 4 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-indigo-500/10 border border-indigo-400/30 flex items-center justify-center text-indigo-400 mb-3 shadow-md">
+                        <i data-lucide="equal" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Relación de igualdad</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Trato entre pares y mutuo respeto</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Negociar con la empresa desde la <span class="text-cyan-300 font-semibold">igualdad y el respeto profesional mutuo</span>, nunca desde una posición de inferioridad ni súplica.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Illustration: Balanced Scales of Equal Value -->
+            <div class="lg:col-span-4 flex items-center justify-center">
+              <div class="w-full max-w-[300px] aspect-square rounded-2xl bg-slate-900/70 border border-cyan-500/20 p-5 flex flex-col items-center justify-between relative shadow-xl overflow-hidden">
+                <div class="text-center z-10">
+                  <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Paridad Estratégica</span>
+                  <p class="text-sm font-bold text-white mt-0.5">Balanza de Igualdad</p>
+                </div>
+
+                <svg viewBox="0 0 240 180" class="w-full h-full my-2 relative z-10">
+                  <!-- Base Pillar -->
+                  <polygon points="120,75 105,145 135,145" fill="#0F172A" stroke="#334155" stroke-width="2" />
+                  <ellipse cx="120" cy="145" rx="35" ry="8" fill="#1E293B" stroke="#475569" stroke-width="1.5" />
+
+                  <!-- Balanced Swaying Beam -->
+                  <g class="svg-balance-beam">
+                    <line x1="40" y1="75" x2="200" y2="75" stroke="#06B6D4" stroke-width="3" stroke-linecap="round" />
+                    <!-- Left Plate (Empresa) -->
+                    <line x1="55" y1="75" x2="55" y2="105" stroke="#64748B" stroke-width="1.5" />
+                    <ellipse cx="55" cy="108" rx="24" ry="7" fill="#0F172A" stroke="#2563EB" stroke-width="2" />
+                    <text x="55" y="125" fill="#60A5FA" font-size="8" font-family="monospace" text-anchor="middle">EMPRESA</text>
+
+                    <!-- Right Plate (Candidato/Solución) -->
+                    <line x1="185" y1="75" x2="185" y2="105" stroke="#64748B" stroke-width="1.5" />
+                    <ellipse cx="185" cy="108" rx="24" ry="7" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+                    <text x="185" y="125" fill="#38BDF8" font-size="8" font-family="monospace" text-anchor="middle">SOLUCIÓN</text>
+                  </g>
+
+                  <!-- Equal fulcrum pivot point -->
+                  <circle cx="120" cy="75" r="7" fill="#FFFFFF" stroke="#06B6D4" stroke-width="2" />
+                </svg>
+
+                <div class="text-[11px] font-mono text-center text-cyan-300 bg-slate-950/70 px-3 py-1.5 rounded-lg border border-cyan-500/20 w-full z-10">
+                  Negociar como socios de soluciones
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+            <span>"Cuando dejas de pedir permiso para aportar, te conviertes en la persona que buscan."</span>
+            <span class="text-cyan-400">Slide 13</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 14: SEPARADOR DEDICADO — 6. MIEDO                                   -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-14">
+        <div class="w-full glass-panel p-10 sm:p-14 lg:p-20 relative flex flex-col items-center justify-center text-center overflow-hidden">
+          <div class="absolute inset-0 bg-radial from-blue-600/20 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+          <div class="mb-6">
+            <span class="px-5 py-2 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-blue-500/10 border border-cyan-400/30 text-cyan-300 shadow-lg shadow-cyan-500/10">
+              SECCIÓN 06
+            </span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight mb-6">
+            6. <br>
+            <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+              Miedo
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-xl text-slate-300 max-w-xl font-light mb-10 leading-relaxed">
+            El miedo en el trabajo es aprendido y se puede desaprender. Empodérate para alzar la voz con criterio y seguridad.
+          </p>
+
+          <!-- SVG Visual: Escudo protector disolviendo bruma -->
+          <div class="w-48 h-36 relative flex items-center justify-center">
+            <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-xl">
+              <!-- Shield Shape Core -->
+              <path d="M100 20 C 140 20, 150 45, 150 75 C 150 110, 100 135, 100 135 C 100 135, 50 110, 50 75 C 50 45, 60 20, 100 20 Z" fill="#0F172A" stroke="#06B6D4" stroke-width="2.5" class="svg-shield-core" />
+              <!-- Energy core inside shield -->
+              <circle cx="100" cy="72" r="14" fill="#2563EB" opacity="0.6" />
+              <path d="M100 58 L100 86 M86 72 L114 72" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <div class="mt-8 flex items-center gap-2 text-xs font-mono text-slate-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Avanza para desaprender el miedo y cultivar asertividad</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 15: 6. MIEDO (DESAPRENDER Y EMPODERAR)                              -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-15">
+        <div class="w-full glass-panel p-6 sm:p-10 lg:p-12 relative flex flex-col justify-between">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">Sección 06</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-xs text-slate-400">Seguridad & Asertividad</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                Miedo: <span class="text-cyan-400">Desaprender y Empoderar la Voz</span>
+              </h2>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300">
+              <i data-lucide="shield-alert" class="w-4 h-4 text-cyan-400"></i>
+              <span>3 Conceptos Clave</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-6 items-center">
+            
+            <!-- Cards Column (3 subtopics strictly as Vertical 2-sided Interactive Flip Cards) -->
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <!-- Point 1 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-400/30 flex items-center justify-center text-cyan-400 mb-3.5 shadow-md">
+                        <i data-lucide="brain" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        La naturaleza del miedo
+                      </h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">
+                        Condicionamiento social reversible
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="info" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        El miedo al juicio profesional, al error o a la crítica es un <span class="text-cyan-300 font-semibold">condicionamiento aprendido</span> y totalmente reversible con práctica deliberada y acompañamiento.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 2 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 mb-3.5 shadow-md">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        Quitar el miedo
+                      </h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">
+                        Seguridad técnica y práctica deliberada
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Fomentar activamente la <span class="text-cyan-300 font-semibold">seguridad personal</span>. Brindar entornos seguros donde equivocarse sea asumido como un paso natural del ciclo de mejora.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 3 -->
+              <div class="flip-card-container flip-card-tall">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-cyan-500/40 bg-cyan-950/20">
+                    <div>
+                      <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 mb-3.5 shadow-md">
+                        <i data-lucide="mic" class="w-6 h-6"></i>
+                      </div>
+                      <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
+                        Empoderamiento real
+                      </h3>
+                      <p class="text-xs sm:text-sm text-cyan-300/80 font-light">
+                        Alzar la voz para proponer valor
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <div>
+                      <div class="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 mb-2.5">
+                        <i data-lucide="volume-2" class="w-4 h-4"></i>
+                      </div>
+                      <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                        Tener el criterio y la confianza de <span class="text-cyan-300 font-semibold">alzar la voz</span> cuando ven una oportunidad de mejora o cuando pueden sumar valor directo a la solución.
+                      </p>
+                    </div>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Illustration: Fear Waves Dissolving into Assertive Core -->
+            <div class="lg:col-span-4 flex items-center justify-center">
+              <div class="w-full max-w-[300px] aspect-square rounded-2xl bg-slate-900/70 border border-cyan-500/20 p-5 flex flex-col items-center justify-between relative shadow-xl overflow-hidden">
+                <div class="text-center z-10">
+                  <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Filtro de Seguridad</span>
+                  <p class="text-sm font-bold text-white mt-0.5">Disolución de la Duda</p>
+                </div>
+
+                <svg viewBox="0 0 240 180" class="w-full h-full my-2 relative z-10">
+                  <!-- Noise/Fear Waves incoming -->
+                  <path d="M25 60 Q 40 40, 55 60 T 85 60" fill="none" stroke="#EF4444" stroke-width="2" class="svg-noise-line" opacity="0.6" />
+                  <path d="M25 90 Q 40 70, 55 90 T 85 90" fill="none" stroke="#F59E0B" stroke-width="2" class="svg-noise-line" opacity="0.6" />
+                  <path d="M25 120 Q 40 100, 55 120 T 85 120" fill="none" stroke="#EF4444" stroke-width="2" class="svg-noise-line" opacity="0.6" />
+
+                  <!-- Protective Barrier Filter -->
+                  <line x1="100" y1="30" x2="100" y2="150" stroke="#06B6D4" stroke-width="3" stroke-dasharray="4 4" />
+
+                  <!-- Clear Resonant Voice (Right) -->
+                  <g transform="translate(165, 90)">
+                    <circle cx="0" cy="0" r="32" fill="#0F172A" stroke="#38BDF8" stroke-width="2.5" />
+                    <circle cx="0" cy="0" r="20" fill="#2563EB" opacity="0.3" />
+                    <!-- Soundwave ripples of confidence -->
+                    <path d="M8 -12 C 16 -6, 16 6, 8 12" fill="none" stroke="#06B6D4" stroke-width="2.5" stroke-linecap="round" />
+                    <path d="M14 -20 C 26 -10, 26 10, 14 20" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" />
+                    <circle cx="-4" cy="0" r="4" fill="#FFFFFF" />
+                  </g>
+                </svg>
+
+                <div class="text-[11px] font-mono text-center text-cyan-300 bg-slate-950/70 px-3 py-1.5 rounded-lg border border-cyan-500/20 w-full z-10">
+                  Tu voz tiene valor en la mesa de trabajo
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+            <span>"El silencio ante lo que se puede mejorar es el verdadero freno del talento."</span>
+            <span class="text-cyan-400">Slide 15</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 16: SEPARADOR DEDICADO — 7. HACKATHONS Y COMPETENCIAS              -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-16">
+        <div class="w-full glass-panel p-10 sm:p-14 lg:p-20 relative flex flex-col items-center justify-center text-center overflow-hidden">
+          <div class="absolute inset-0 bg-radial from-indigo-600/20 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+          <div class="mb-6">
+            <span class="px-5 py-2 rounded-full text-xs font-mono font-bold tracking-widest uppercase bg-indigo-500/10 border border-indigo-400/30 text-indigo-300 shadow-lg shadow-indigo-500/10">
+              SECCIÓN 07
+            </span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight mb-6">
+            7. Organizar Competencias <br>
+            <span class="bg-gradient-to-r from-indigo-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
+              con Empresas (Hackathons)
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-xl text-slate-300 max-w-xl font-light mb-10 leading-relaxed">
+            El laboratorio de máxima aceleración: donde el código bajo presión se funde con el trabajo en equipo y la visibilidad institucional.
+          </p>
+
+          <!-- SVG Visual: Cronómetro digital y engranajes acelerados -->
+          <div class="w-48 h-36 relative flex items-center justify-center">
+            <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-xl">
+              <!-- Stopwatch frame -->
+              <circle cx="100" cy="80" r="45" fill="#0F172A" stroke="#4F46E5" stroke-width="2.5" />
+              <!-- Top Buttons -->
+              <rect x="94" y="24" width="12" height="12" fill="#06B6D4" rx="2" />
+              <!-- Dial lines -->
+              <circle cx="100" cy="80" r="38" fill="none" stroke="#334155" stroke-dasharray="2 6" />
+              <!-- Moving Hand -->
+              <line x1="100" y1="80" x2="100" y2="48" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" class="svg-stopwatch-hand" />
+              <circle cx="100" cy="80" r="5" fill="#FFFFFF" />
+            </svg>
+          </div>
+
+          <div class="mt-8 flex items-center gap-2 text-xs font-mono text-slate-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Avanza para conocer los impactos directos del formato</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 17: 7. HACKATHONS (IMPACTO Y ENTRENAMIENTO REAL)                   -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-17">
+        <div class="w-full glass-panel p-6 sm:p-10 lg:p-12 relative flex flex-col justify-between">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono font-semibold text-cyan-400 uppercase tracking-wider">Sección 07</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-xs text-slate-400">Aceleración de Talento</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                Hackathons: <span class="text-cyan-400">Impacto Integral y Entrenamiento Real</span>
+              </h2>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300">
+              <i data-lucide="flame" class="w-4 h-4 text-cyan-400"></i>
+              <span>4 Puntos Clave</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-6 items-center">
+            
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Point 1 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between border-cyan-500/30 bg-cyan-950/20">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 mb-3 shadow-md">
+                        <i data-lucide="zap" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Desarrollo simultáneo</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Hard skills y soft skills en sinergia</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Desarrolla simultáneamente <span class="text-cyan-300 font-semibold">habilidades duras (*hard skills*)</span> y <span class="text-cyan-300 font-semibold">habilidades blandas (*soft skills*)</span> en un ciclo ultrarrápido y colaborativo.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 2 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-blue-500/10 border border-blue-400/30 flex items-center justify-center text-cyan-400 mb-3 shadow-md">
+                        <i data-lucide="landmark" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Posicionamiento estratégico</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Visibilidad institucional y académica</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Ayuda al <span class="text-cyan-300 font-semibold">posicionamiento de la universidad</span> y sus facultades frente a las empresas líderes y reclutadores clave del ecosistema.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 3 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-indigo-500/10 border border-indigo-400/30 flex items-center justify-center text-indigo-400 mb-3 shadow-md">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Valor directo al portafolio</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Proyectos terminados y defendidos</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Agrega <span class="text-cyan-300 font-semibold">valor directo y tangible al portafolio</span> con soluciones funcionales defendidas con éxito ante jurados de alto nivel.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Point 4 -->
+              <div class="flip-card-container flip-card-grid-item">
+                <div class="flip-card-inner">
+                  <!-- Front -->
+                  <div class="flip-card-front flex-col justify-between">
+                    <div>
+                      <div class="w-11 h-11 rounded-lg bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-3 shadow-md">
+                        <i data-lucide="activity" class="w-5 h-5"></i>
+                      </div>
+                      <h3 class="text-base font-bold text-white mb-1.5 leading-snug">Entrenamiento bajo presión</h3>
+                      <p class="text-xs sm:text-sm text-slate-300 font-light">Simulación de estrés y plazos reales</p>
+                    </div>
+                    <span class="flip-hint-badge self-start">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Ver contenido</span>
+                    </span>
+                  </div>
+
+                  <!-- Back -->
+                  <div class="flip-card-back flex-col justify-between">
+                    <p class="text-sm sm:text-[15px] text-slate-100 leading-relaxed font-normal">
+                      Entrena a los estudiantes para el <span class="text-cyan-300 font-semibold">trabajo bajo presión y estrés</span> en escenarios con plazos y restricciones idénticos al mundo real.
+                    </p>
+                    <span class="flip-hint-badge self-start bg-blue-500/20 text-blue-300 border-blue-400/40">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                      <span>Volver</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Illustration: Hackathon Trophy & Collaborative Data Lines -->
+            <div class="lg:col-span-4 flex items-center justify-center">
+              <div class="w-full max-w-[300px] aspect-square rounded-2xl bg-slate-900/70 border border-cyan-500/20 p-5 flex flex-col items-center justify-between relative shadow-xl overflow-hidden">
+                <div class="text-center z-10">
+                  <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Laboratorio de Talento</span>
+                  <p class="text-sm font-bold text-white mt-0.5">Reto de Alto Rendimiento</p>
+                </div>
+
+                <svg viewBox="0 0 240 180" class="w-full h-full my-2 relative z-10">
+                  <!-- Team convergent nodes -->
+                  <circle cx="45" cy="45" r="14" fill="#0F172A" stroke="#2563EB" stroke-width="2" />
+                  <circle cx="195" cy="45" r="14" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+                  <circle cx="45" cy="135" r="14" fill="#0F172A" stroke="#4F46E5" stroke-width="2" />
+                  <circle cx="195" cy="135" r="14" fill="#0F172A" stroke="#10B981" stroke-width="2" />
+
+                  <!-- Connecting convergent lines to center -->
+                  <line x1="57" y1="54" x2="105" y2="82" stroke="#60A5FA" stroke-width="1.5" stroke-dasharray="3 3" />
+                  <line x1="183" y1="54" x2="135" y2="82" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="3 3" />
+                  <line x1="57" y1="126" x2="105" y2="98" stroke="#818CF8" stroke-width="1.5" stroke-dasharray="3 3" />
+                  <line x1="183" y1="126" x2="135" y2="98" stroke="#34D399" stroke-width="1.5" stroke-dasharray="3 3" />
+
+                  <!-- Center Trophy of Achievement -->
+                  <g transform="translate(120, 90)" class="svg-trophy-float">
+                    <circle cx="0" cy="0" r="26" fill="#0B132B" stroke="#EAB308" stroke-width="2" />
+                    <!-- Trophy cup path -->
+                    <path d="M-10 -10 L10 -10 L7 5 C 5 11, -5 11, -7 5 Z" fill="#FACC15" />
+                    <line x1="0" y1="10" x2="0" y2="16" stroke="#FACC15" stroke-width="2" />
+                    <line x1="-8" y1="16" x2="8" y2="16" stroke="#FACC15" stroke-width="2" />
+                  </g>
+                </svg>
+
+                <div class="text-[11px] font-mono text-center text-cyan-300 bg-slate-950/70 px-3 py-1.5 rounded-lg border border-cyan-500/20 w-full z-10">
+                  Prueba de fuego que acelera carreras
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+            <span>"En un hackathon no gana el código más largo, sino el equipo que mejor ejecuta y comunica."</span>
+            <span class="text-cyan-400">Slide 17</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SLIDE 18: CIERRE Y PREGUNTAS                                              -->
+      <!-- ========================================================================= -->
+      <section class="slide" id="slide-18">
+        <div class="w-full glass-panel p-8 sm:p-14 lg:p-16 relative flex flex-col items-center justify-center text-center overflow-hidden">
+          
+          <div class="absolute inset-0 bg-radial from-blue-600/25 via-cyan-500/10 to-transparent opacity-60 pointer-events-none"></div>
+
+          <div class="mb-4">
+            <span class="badge-tag">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5 text-cyan-400"></i>
+              Conclusión Magistral
+            </span>
+          </div>
+
+          <!-- Closing Strong Quotation -->
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white max-w-3xl leading-tight mb-6">
+            "Construye tu marca, domina tus habilidades blandas y haz que tu talento <br>
+            <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+              hable en la mesa donde se decide
+            </span>."
+          </h2>
+
+          <p class="text-sm sm:text-base text-slate-300 font-light max-w-xl mb-8">
+            El valor de tu ingeniería se multiplica exponencialmente cuando aprendes a proyectarlo, defenderlo y conectarlo con las personas.
+          </p>
+
+          <!-- Speaker Card & Reset Button -->
+          <div class="flex flex-col sm:flex-row items-center gap-4 mb-8">
+            
+            <div class="flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-900/80 border border-cyan-500/30 shadow-lg">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center font-bold text-white shadow-md">
+                AG
+              </div>
+              <div class="text-left">
+                <span class="text-xs text-slate-400 block font-mono">Muchas Gracias</span>
+                <span class="text-sm font-semibold text-white">Aldo Gutierrez</span>
+              </div>
+            </div>
+
+            <button onclick="goToSlide(0)" class="flex items-center gap-2 px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/25 transition-all hover:scale-105 active:scale-95 border border-cyan-300/40 cursor-pointer">
+              <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+              <span>Reiniciar Presentación</span>
+            </button>
+
+          </div>
+
+          <!-- Animated End Loop Emblem -->
+          <div class="w-24 h-24 relative flex items-center justify-center">
+            <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-xl svg-final-emblem">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="6 8" />
+              <circle cx="50" cy="50" r="32" fill="#0F172A" stroke="#06B6D4" stroke-width="2" />
+              <polygon points="50,38 60,56 40,56" fill="#38BDF8" />
+            </svg>
+          </div>
+
+          <div class="mt-6 text-xs font-mono text-slate-400">
+            <span>¿Preguntas, reflexiones o debate? • Fin del Deck</span>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Controls Deck -->
+    <footer class="w-full px-6 py-4 flex items-center justify-between z-20">
+      
+      <!-- Left: Navigation Hotkeys Hint -->
+      <div class="hidden sm:flex items-center gap-3 text-xs text-slate-400 font-mono">
+        <span class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-900 border border-white/10 text-slate-300">
+          <kbd>←</kbd> <kbd>→</kbd>
+        </span>
+        <span>Navegar</span>
+        <span class="text-slate-600">|</span>
+        <span class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-900 border border-white/10 text-slate-300">
+          <kbd>F</kbd>
+        </span>
+        <span>Pantalla Completa</span>
+      </div>
+
+      <!-- Center & Right Controls -->
+      <div class="flex items-center gap-2 mx-auto sm:mx-0">
+        <!-- Restart Button -->
+        <button id="restart-btn" class="control-btn" title="Reiniciar al inicio (Home)">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Previous Button -->
+        <button id="prev-btn" class="control-btn" title="Diapositiva Anterior (←)">
+          <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Next Button -->
+        <button id="next-btn" class="control-btn !bg-blue-600/60 hover:!bg-blue-600 !border-cyan-400/40 text-cyan-200" title="Siguiente Diapositiva (→ o Espacio)">
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Fullscreen Button -->
+        <button id="fullscreen-btn" class="control-btn" title="Alternar Pantalla Completa (F)">
+          <i data-lucide="maximize-2" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </footer>
+
+  </div>
+
+  <!-- Main Presentation Logic -->
+  <script src="js/background-3d.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

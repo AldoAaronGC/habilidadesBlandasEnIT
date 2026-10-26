@@ -1,0 +1,316 @@
+/* css/presentation.css - Glassmorphism, slide deck layouts and responsive styling */
+
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Glassmorphism Card Style */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 25px 60px rgba(37, 99, 235, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-pill {
+  background: rgba(30, 41, 59, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Slide viewport and animations */
+.deck-viewport {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-height: 820px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(24px) scale(0.98);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.6s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* 3D Interactive Flip Card System */
+.flip-card-container {
+  perspective: 1200px;
+  width: 100%;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.flip-card-container:hover {
+  transform: translateY(-4px);
+}
+
+.flip-card-container:focus-visible {
+  border-radius: 1.25rem;
+  box-shadow: 0 0 0 2px #06B6D4;
+}
+
+/* Base heights for layout formats */
+.flip-card-tall {
+  min-height: 310px;
+}
+
+.flip-card-grid-item {
+  min-height: 215px;
+}
+
+/* Staggered card entrance animations when slide becomes active */
+.slide.active .flip-card-container:nth-child(1) {
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s backwards;
+}
+.slide.active .flip-card-container:nth-child(2) {
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.16s backwards;
+}
+.slide.active .flip-card-container:nth-child(3) {
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.24s backwards;
+}
+.slide.active .flip-card-container:nth-child(4) {
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.32s backwards;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flip-card-container.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 1.25rem;
+  padding: 1.35rem 1.4rem;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.flip-card-back {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.flip-card-back::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card Front (Logo + Idea Principal) */
+.flip-card-front {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.flip-card-container:hover .flip-card-front {
+  border-color: rgba(6, 182, 212, 0.45);
+  background: rgba(30, 41, 59, 0.8);
+  box-shadow: 0 14px 35px rgba(6, 182, 212, 0.18);
+}
+
+/* Card Back (Contenido / Desarrollo) */
+.flip-card-back {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.4));
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.3), inset 0 0 20px rgba(6, 182, 212, 0.15);
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.flip-card-container:hover .flip-card-back {
+  border-color: rgba(6, 182, 212, 0.7);
+  box-shadow: 0 18px 45px rgba(6, 182, 212, 0.35), inset 0 0 25px rgba(6, 182, 212, 0.2);
+}
+
+/* Micro-indicator to prompt clicking */
+@keyframes hintPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0);
+  }
+}
+
+.flip-hint-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #38BDF8;
+  transition: all 0.25s ease;
+  animation: hintPulse 3s infinite ease-in-out;
+}
+
+.flip-card-container:hover .flip-hint-badge {
+  background: rgba(6, 182, 212, 0.25);
+  border-color: rgba(6, 182, 212, 0.6);
+  transform: scale(1.05);
+}
+
+/* Standard feature card fallback (if any) */
+.feature-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(6, 182, 212, 0.35);
+  background: rgba(30, 41, 59, 0.7);
+  box-shadow: 0 12px 30px rgba(6, 182, 212, 0.12);
+}
+
+
+/* Badges & Accents */
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38BDF8;
+}
+
+/* Dots indicator */
+.dot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dot-indicator.active {
+  width: 28px;
+  background: linear-gradient(90deg, #2563EB, #06B6D4);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
+}
+
+/* Bottom Controls */
+.control-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #F8FAFC;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.control-btn:hover:not(:disabled) {
+  background: rgba(37, 99, 235, 0.35);
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: scale(1.06);
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.3);
+}
+
+.control-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Responsive constraints */
+@media (max-width: 1024px) {
+  .deck-viewport {
+    padding: 1rem;
+  }
+  .slide {
+    overflow-y: auto;
+    max-height: calc(100vh - 140px);
+    justify-content: flex-start;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+}
